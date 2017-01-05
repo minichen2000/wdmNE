@@ -1,6 +1,9 @@
-package com.nsb.test.wdmne.com.nsb.test.wdmne.util;
+package com.nsb.test.wdmne.util;
 
-import com.nsb.test.wdmne.com.nsb.test.wdmne.converter.*;
+import com.nsb.test.wdmne.converter.BasicOABoardPortConverter;
+import com.nsb.test.wdmne.converter.BasicOTBoardPortConverter;
+import com.nsb.test.wdmne.converter.BasicSFDBoardPortConverter;
+import com.nsb.test.wdmne.converter.OTBoardPortConverter_260SCX2;
 import com.nsb.test.wdmne.itf.PortConverter;
 
 import java.util.HashMap;

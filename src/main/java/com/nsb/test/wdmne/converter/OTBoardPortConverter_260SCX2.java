@@ -1,6 +1,5 @@
-package com.nsb.test.wdmne.com.nsb.test.wdmne.converter;
+package com.nsb.test.wdmne.converter;
 
-import com.nsb.test.wdmne.com.nsb.test.wdmne.util.PortConverterUtil;
 import com.nsb.test.wdmne.itf.PortConverter;
 import com.nsb.test.wdmne.model.AdpTp;
 import com.nsb.test.wdmne.model.SnmpPortEntity;

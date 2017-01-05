@@ -1,9 +1,8 @@
-package com.nsb.test.wdmne.com.nsb.test.wdmne.converter;
+package com.nsb.test.wdmne.converter;
 
 import com.nsb.test.wdmne.itf.PortConverter;
 import com.nsb.test.wdmne.model.AdpTp;
 import com.nsb.test.wdmne.model.SnmpPortEntity;
-import com.sun.xml.internal.bind.v2.TODO;
 
 /**
  * Created by minichen on 2017/1/5.

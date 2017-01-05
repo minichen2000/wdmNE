@@ -1,4 +1,4 @@
-package com.nsb.test.wdmne.com.nsb.test.wdmne.util;
+package com.nsb.test.wdmne.util;
 
 import com.nsb.test.wdmne.model.SnmpPortEntity;
 
