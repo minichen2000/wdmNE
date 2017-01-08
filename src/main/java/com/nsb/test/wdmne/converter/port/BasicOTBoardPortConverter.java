@@ -1,4 +1,4 @@
-package com.nsb.test.wdmne.converter;
+package com.nsb.test.wdmne.converter.port;
 
 import com.nsb.test.wdmne.util.PortConverterUtil;
 import com.nsb.test.wdmne.itf.PortConverter;
@@ -10,14 +10,20 @@ import com.nsb.test.wdmne.model.SnmpPortEntity;
  * 一般OT盘所有Port的Converter
  */
 public class BasicOTBoardPortConverter implements PortConverter {
-    static private PortConverter basicOTClientPortConverter=new BasicOTClientPortConverter();
-    static private PortConverter basicOTLinePortConverter=new BasicOTLinePortConverter();
-    public void convert(AdpTp adpPort, SnmpPortEntity entity) {
+    private static BasicOTBoardPortConverter instance = new BasicOTBoardPortConverter();
+    public static BasicOTBoardPortConverter getInstance() {
+        return instance;
+    }
+    private BasicOTBoardPortConverter() {
+    }
+
+    public boolean convert(AdpTp adpPort, SnmpPortEntity entity) {
         //区分Client侧Port和Line侧Port，分别转换
         if(PortConverterUtil.isOTClientPort(entity)){
-            basicOTClientPortConverter.convert(adpPort, entity);
+            BasicOTClientPortConverter.getInstance().convert(adpPort, entity);
         }else if(PortConverterUtil.isOTLinePort(entity)){
-            basicOTLinePortConverter.convert(adpPort, entity);
+            BasicOTLinePortConverter.getInstance().convert(adpPort, entity);
         }
+        return true;
     }
 }

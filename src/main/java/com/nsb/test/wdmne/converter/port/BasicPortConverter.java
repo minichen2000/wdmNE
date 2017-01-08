@@ -1,4 +1,4 @@
-package com.nsb.test.wdmne.converter;
+package com.nsb.test.wdmne.converter.port;
 
 import com.nsb.test.wdmne.itf.PortConverter;
 import com.nsb.test.wdmne.model.AdpTp;
@@ -11,8 +11,15 @@ import com.nsb.test.wdmne.model.SnmpPortEntity;
  * 可以预见，该Converter会承担所有Port的大部分Convert工作
  */
 public class BasicPortConverter implements PortConverter{
-    public void convert(AdpTp adpPort, SnmpPortEntity entity) {
+    private static BasicPortConverter instance = new BasicPortConverter();
+    public static BasicPortConverter getInstance() {
+        return instance;
+    }
+    private BasicPortConverter() {
+    }
+    public boolean convert(AdpTp adpPort, SnmpPortEntity entity) {
         //TODO:
         //...
+        return true;
     }
 }

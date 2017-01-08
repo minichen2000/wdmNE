@@ -1,6 +1,9 @@
 package com.nsb.test.wdmne;
 
-import com.nsb.test.wdmne.util.PortConverterMgr;
+import com.nsb.test.wdmne.itf.BoardResourceGenerator;
+import com.nsb.test.wdmne.itf.CTPGenerator;
+import com.nsb.test.wdmne.itf.XCGenerator;
+import com.nsb.test.wdmne.util.BoardResourceGeneratorMgr;
 import com.nsb.test.wdmne.itf.PortConverter;
 import com.nsb.test.wdmne.model.AdpTp;
 import com.nsb.test.wdmne.model.SnmpPortEntity;
@@ -13,23 +16,45 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] argv){
+
         //TODO:假设我们已经从下层snmp得到了所有Port的SnmpPortEntity列表
         //...
         List<SnmpPortEntity> entities=new ArrayList<SnmpPortEntity>();
-        convertAllPorts(entities);
+        generateAllPortsAndCTPs(entities);
+        generateAllXCs();
+
+
     }
-    private static void convertAllPorts(List<SnmpPortEntity> entities){
-        AdpTp tp;
-        PortConverter c;
+    private static void generateAllPortsAndCTPs(List<SnmpPortEntity> entities){
+        AdpTp port;
+        BoardResourceGenerator g;
+        PortConverter portConverter;
+        CTPGenerator ctpGenerator;
+        XCGenerator xcGenerator;
         for(SnmpPortEntity entity : entities){
-            c= PortConverterMgr.getInstance().getConverter(entity.getBoardType());
-            if(null!=c){
-                tp=new AdpTp();
-                c.convert(tp, entity);
-                //TODO:写入DB
+            g= BoardResourceGeneratorMgr.getInstance().getGenerator(entity.getBoardType());
+            if(null!=g){
+                port=new AdpTp();
+                boolean rlt=g.getPortConverter().convert(port, entity);
+                if(rlt) {
+                    //TODO: port写入DB
+                    ctpGenerator=g.getCTPGenerator();
+                    if(null!=ctpGenerator){
+                        List<AdpTp> ctps=ctpGenerator.generate(port, entity);
+                        //TODO: ctps写入DB
+                    }
+                }else{
+                    //TODO:记录日志
+                }
             }else{
-                //TODO:记录日志：找不到converter!
+                //TODO:记录日志
             }
         }
+    }
+    private static void generateAllXCs(){
+        //TODO: 为所有盘按盘生成xc
+        //0. 从DB取出所有盘
+            //1. 从DB取出该盘的所有TP
+            //2. BoardResourceGeneratorMgr.getInstance().getGenerator(entity.getBoardType()).getXCGenerator().generate();
     }
 }
