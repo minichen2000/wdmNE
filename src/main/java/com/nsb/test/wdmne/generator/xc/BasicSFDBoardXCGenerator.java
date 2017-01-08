@@ -1,6 +1,5 @@
 package com.nsb.test.wdmne.generator.xc;
 
-import com.nsb.test.wdmne.itf.AdpEquipment;
 import com.nsb.test.wdmne.itf.XCGenerator;
 import com.nsb.test.wdmne.model.AdpTp;
 import com.nsb.test.wdmne.model.AdpXC;
