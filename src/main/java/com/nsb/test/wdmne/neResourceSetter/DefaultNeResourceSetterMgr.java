@@ -20,7 +20,7 @@ public class DefaultNeResourceSetterMgr<T> implements NeResourceSetterMgr<T> {
     }
 
     public boolean matchAttrNameSet(Set<String> attrNames, Map<String, Object> attrs) {
-        return attrs.keySet()==attrNames;
+        return attrNames.size()==attrs.size() && attrs.keySet()==attrNames;
     }
     public AdpNe findNe(String neId) {
         return null;
